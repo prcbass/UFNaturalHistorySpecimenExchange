@@ -5,6 +5,9 @@ ehthumbs.db
 Icon?
 Thumbs.db
 
+# PHP
+db_conf.php
+
 # Node and related ecosystem
 # ==========================
 .nodemonignore
