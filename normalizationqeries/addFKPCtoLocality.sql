@@ -1,0 +1,6 @@
+select count(*) from LOCALITY l  LEFT JOIN PALEOCONTEXT p 
+ON l.PALEOCONTEXTID=p.PALEOCONTEXTID;
+
+select count(*) from locality;
+
+ALTER TABLE LOCALITY ADD( foreign key (PALEOCONTEXTID) references PALEOCONTEXT(PALEOCONTEXTID));
