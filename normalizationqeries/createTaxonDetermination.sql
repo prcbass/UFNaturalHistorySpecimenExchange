@@ -6,15 +6,21 @@ t_class varchar2(26),
 t_order varchar2(22),
 t_family varchar2(38), 
 t_genus varchar2(25), 
-institutionCode varchar2(105),
-collectionCode varchar2(69), 
-catalogNumber varchar2(63),
-foreign key(t_kingdom) references Taxonomy(taxonID),
-foreign key(t_phylum) references Taxonomy(taxonID),
-foreign key(t_class) references Taxonomy(taxonID),
-foreign key(t_order) references Taxonomy(taxonID),
-foreign key(t_family) references Taxonomy(taxonID),
-foreign key(t_genus) references Taxonomy(taxonID),
-foreign key(institutionCode,collectionCode,catalogNumber) references Specimen(institutionCode,collectionCode,catalogNumber),
+t_species varchar(45),
 primary key (determinationID));
+
+select max(length(INFRASPECIFICEPITHET)) from IDIGBIOFLAT;
+/*
+Mapping:
+	T_kingdom -> kingdom
+T_phylum -> phylum
+T_class -> class
+T_order -> torder
+T_family -> family
+T_genus -> genus
+	institutionCode -> institutionCode
+	collectionCode -> collectionCode
+	catalogNumber -> catalogNumber
+*/
+
 
