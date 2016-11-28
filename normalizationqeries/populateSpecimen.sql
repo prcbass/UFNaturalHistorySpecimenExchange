@@ -6,6 +6,8 @@ collectionCode varchar2(69),
 basisOfRecord varchar2(25),   
 catalogNumber varchar2(63), 
 TYPESTATUS varchar2(422),
-COLLECTIONEVENTID RAW(16),
+COLLECTIONTEVENTID RAW(16),
 DETERMINATIONID RAW(16),
 primary key (SPECIMENID));
+
+insert into

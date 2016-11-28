@@ -15,4 +15,4 @@ from IDIGBIOFLAT;
 
 COMMIT ALL;
 
---select count(*) from TAXONDETERMINATION;
+select count(*) from TAXONDETERMINATION;
