@@ -11,3 +11,11 @@ insert into Institution
 (institutionID)
   select distinct NVL(INSTITUTIONCODE, 0)
 from Specimen;
+
+DELETE FROM Institution WHERE
+(institutionID)
+IN
+(
+  SELECT institutionID FROM Institution 
+  WHERE institutionID = '0'
+);
