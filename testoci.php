@@ -41,7 +41,7 @@
     echo "</table>\n";
 
     // parse a new query 
-    $stid = oci_parse($conn, 'select count(*) as tupleCount from IDIGBIOFLAT');
+    $stid = oci_parse($conn, 'select count(*) as tupleCount from SPECIMEN');
     // execute the new query
     oci_execute($stid);
     // example of how to loop through results returned as objects
@@ -54,7 +54,7 @@
     echo "<h3>First 10 Records</h3>";
 
     // Let's get the first 10 rows from our iDigBioFlat table, return the results as an array, and display the results in a table.
-    $stid = oci_parse($conn, 'select * from IDIGBIOFLAT where ROWNUM <= 10');
+    $stid = oci_parse($conn, 'select * from SPECIMEN where ROWNUM <= 10');
     oci_execute($stid);
     echo "<table border=\"1\">\n";
     while (($row = oci_fetch_array($stid, OCI_NUM+OCI_RETURN_NULLS)) != false) {
