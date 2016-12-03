@@ -23,19 +23,16 @@
     }
     echo "</table>\n";
 
-    //42406 records should be updated 
-    //$rowNumMin = 0;
-    //$rowNumMax = 10000;
+    //42520 records should be updated 
 
-    //$selectGeo = 'select * from ( select a.*, ROWNUM rnum from ( select RAWTOHEX(LocalityID) as ID, I_GEOPOINT from Locality where I_GEOPOINT is not null order by LocalityID desc ) a where ROWNUM <= '. $rowNumMax . ') where rnum  >= '. $rowNumMin;
-    $selectGeo = 'select RAWTOHEX(LocalityID) as ID, I_GEOPOINT from Locality where I_GEOPOINT is not null';
+    $selectGeo = 'select RAWTOHEX(LocalityID) as ID, I_GEOPOINT from Locality where I_GEOPOINT != \'0\'';
     $getGeo = oci_parse($conn, $selectGeo);
     oci_execute($getGeo);
 
     $latLonMapping = array();
     $count = 0;
 
-    while(($row = oci_fetch_object($getGeo)) != false){ 
+    while(($row = oci_fetch_object($getGeo)) != false){
         echo "WORKING ON ROW " . $count . "\n";
 
         $updateGeo = oci_parse($conn, 'update Locality set Latitude = ' 
@@ -44,7 +41,7 @@
 
         $result = oci_execute($updateGeo);
         if(!$result){
-            echo "<p>FOUND ERROR WHILE UPDATING: " . oci_error() . "</p>\n";
+            echo "FOUND ERROR WHILE UPDATING: " . oci_error($getGeo) . "\n";
             return;
         }
         else{
@@ -52,8 +49,8 @@
         }
     }
 
-    echo "<p>NUMBER OF RECORDS UPDATED AS PART OF THIS SCRIPT</p>\n";
-    echo "<p>" . $count . "</p>\n";
+    echo "NUMBER OF RECORDS UPDATED AS PART OF THIS SCRIPT\n";
+    echo $count . "\n";
 
 
     oci_free_statement($getGeo);
