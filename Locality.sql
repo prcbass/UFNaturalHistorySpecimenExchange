@@ -1,3 +1,5 @@
+--NOTE, this query does not contain NVL selection and is therefore outdated. 
+
 create table Locality 
 (localityID raw(16) default sys_guid(), 
 continent varchar2(25), 

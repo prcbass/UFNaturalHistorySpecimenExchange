@@ -1,3 +1,5 @@
+--NOTE, this query does not contain NVL selection and is therefore outdated. 
+
 create table CollectionEvent
 (collectionEventID raw(16) default sys_guid(), 
 collectedBy varchar2(215), 
