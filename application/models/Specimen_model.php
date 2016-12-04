@@ -13,7 +13,7 @@ class Specimen_model extends CI_Model {
             return $query->result_array();
         }
 
-        public function search_pc()
+        public function search_pc($query_output_only = FALSE)
         {
                 $this->load->helper('url');
 
@@ -29,7 +29,12 @@ class Specimen_model extends CI_Model {
                 {
                         $this->db->like('GEOLOGICALCONTEXTGROUP', $this->input->post('latestperiod'));
                 } 
+                if ($query_output_only === TRUE) 
+                {
 
+                        $query = $this->db->get_compiled_select('PALEOCONTEXT');
+                        return $query;
+                }
                 $query = $this->db->get('PALEOCONTEXT');
                 return $query->result_array();
         }

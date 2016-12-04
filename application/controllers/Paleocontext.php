@@ -11,6 +11,7 @@ class PaleoContext extends CI_Controller {
 
         public function index()
         {
+            $data['sql'] = $this->specimen_model->search_pc(TRUE);
             $data['pc'] = $this->specimen_model->get_pc();
             $data['title'] = 'Paleo Context Example';
 
@@ -37,6 +38,7 @@ class PaleoContext extends CI_Controller {
             }
             else
             {
+                $data['sql'] = $this->specimen_model->search_pc(TRUE);
                 $data['pc'] = $this->specimen_model->search_pc();
                 $this->load->view('templates/header', $data);
                 $this->load->view('paleocontext/index');
