@@ -13,9 +13,32 @@ class Specimen_model extends CI_Model {
             return $query->result_array();
         }
 
-        public function search_specimen($query_output_only = FALSE)
+        public function search_specimen($filterArray,$execute_query = TRUE)
         {
                 $this->load->helper('url');
+                $this->db->limit(50);
+                foreach ($filterArray as $f):
+                        if ($f['operator'] == 'equal')
+                                $this->db->where($f['specimenTerm'],$f['criteria']);
+                        if ($f['operator'] == 'tuple')
+                                $this->db->where_in($f['specimenTerm'],$f['criteria']);
+                        if ($f['operator'] == 'nottuple')
+                                $this->db->where_not_in($f['specimenTerm'],$f['criteria']);
+                        if ($f['operator'] == 'like')
+                                $this->db->where_like($f['specimenTerm'],$f['criteria']);
+                        if ($f['operator'] == 'likeafter')
+                                $this->db->where_like($f['specimenTerm'],$f['criteria'],'after');
+                        if ($f['operator'] == 'likebefore')
+                                $this->db->where_like($f['specimenTerm'],$f['criteria'],'before');
+                endforeach;
+                $this->db->from('SPECIMEN');
+                if ($execute_query === TRUE)
+                {
+                        $query = $this->db->get_compiled_select();
+                        return $query;
+                }
+                $query = $this->db->get();
+                return $query->result_array();
                 
         }
 
@@ -37,7 +60,6 @@ class Specimen_model extends CI_Model {
                 } 
                 if ($query_output_only === TRUE) 
                 {
-
                         $query = $this->db->get_compiled_select('PALEOCONTEXT');
                         return $query;
                 }

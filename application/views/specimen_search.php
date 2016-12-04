@@ -10,7 +10,8 @@
       <div class="col-md-2">
         <select class="form-control" name="operator">
           <option value="equal"> = </option>
-          <option value="not"> != </option>
+          <option value="tuple">in tuple</option>
+          <option value="nottuple">not in tuple</option>
           <option value="like">contains</option>
           <option value="likeafter">starts with</option>
           <option value="likebefore">ends with</opton>
@@ -31,8 +32,13 @@
       </div>
       <div class="col-md-2">
         <div class="row">
-        <input class="btn btn-primary right" type="submit" name="submit" value="Add Filter" />
+          <input class="btn btn-primary left" type="submit" name="submit" id="submit" value="Add Filter" />
+        </div>
       </div>
+      <div class="col-md-2">
+        <div class="row">
+          <input class="btn btn-primary left" type="submit" name="reset_search" id="reset_search" value="Reset" />
+        </div>
     </div>
   </div>
 
@@ -40,7 +46,18 @@
 <section>
   <div class="container">
     <h3>Filter Array</h3>
+    <input class="btn btn-primary left" type="submit" name="run_search" id="run_search" value="search" />
     <?php isset($filterArray) ? print_r($filterArray):''; ?>
+    <table border="1" cellpadding="0" cellspacing="0">
+      <tr><th>Term</th><th>operator</th><th>Criteria</th></tr>
+      <?php foreach ($filterArray as $filter_item): ?>        
+        <tr>
+          <td><?php echo $filter_item['specimenTerm']; ?></td>
+          <td><?php echo $filter_item['operator']; ?></td>
+          <td><?php echo $filter_item['criteria']; ?></td>    
+      </tr>
+      <?php endforeach; ?>
+    </table>
   </div>
 </section>
 <!-- END FILTER ARRAY -->
@@ -49,6 +66,8 @@
 <section>
   <div class="container">
     <h3>Query Results</h3>
+    <?php if (isset($sql)) print_r($sql);  ?>
+    <?php //print_r($searchresult); ?>
     <strong>[Put Tables Here]</strong>
   </div>
 </section>
