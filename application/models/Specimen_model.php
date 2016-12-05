@@ -44,10 +44,10 @@ class Specimen_model extends CI_Model {
                 return $filter_fields;
         }
 
-        public function search_specimen($filterArray,$execute_query = TRUE,$count_only = FALSE)
+        public function search_specimen($filterArray,$execute_query = TRUE,$count_only = FALSE,$limit = 20, $start = 0)
         {
                 $this->load->helper('url');
-                $this->db->limit(25);
+                $this->db->limit($limit,$start);
                 foreach ($filterArray as $f):
                         if ($f['operator'] == 'equal')
                                 $this->db->where($f['specimenTerm'],$f['criteria']);

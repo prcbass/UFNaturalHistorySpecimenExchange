@@ -15,7 +15,7 @@
           <option value="nottuple">not in tuple</option>
           <option value="like">contains</option>
           <option value="likeafter">starts with</option>
-          <option value="likebefore">ends with</opton>
+          <option value="likebefore">ends with</option>
         </select>
       </div>
       <div class="col-md-2">
@@ -64,6 +64,7 @@
     <h3>Query Results</h3>
     <?php if (isset($resultcount)) echo "<p>$resultcount</p>"; ?>
     <?php if (isset($sql)) echo "<p>$sql</p>";  ?>
+    <div class="section"><?php if (isset($links))  echo $links; ?></div>
     <?php if (isset($searchresult) && count($searchresult) > 0): ?>
       <table class="table table-hover table-stripped table-bordered table-condensed">
         <thead>
