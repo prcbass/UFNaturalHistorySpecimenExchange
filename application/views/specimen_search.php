@@ -62,6 +62,7 @@
 <section>
   <div class="container">
     <h3>Query Results</h3>
+    <?php if (isset($resultcount)) echo "<p>$resultcount</p>"; ?>
     <?php if (isset($sql)) echo "<p>$sql</p>";  ?>
     <?php if (isset($searchresult) && count($searchresult) > 0): ?>
       <table class="table table-hover table-stripped table-bordered table-condensed">

@@ -44,7 +44,7 @@ class Specimen_model extends CI_Model {
                 return $filter_fields;
         }
 
-        public function search_specimen($filterArray,$execute_query = TRUE)
+        public function search_specimen($filterArray,$execute_query = TRUE,$count_only = FALSE)
         {
                 $this->load->helper('url');
                 $this->db->limit(25);
@@ -68,15 +68,19 @@ class Specimen_model extends CI_Model {
                                 $this->db->like($f['specimenTerm'],$f['criteria'],'before');
                 endforeach;
                 $this->db->from('SPECIMEN');
-                $this->db->join('TAXONDETERMINATION','SPECIMEN.DETERMINATIONID = TAXONDETERMINATION.DETERMINATIONID');
-                $this->db->join('COLLECTIONEVENT','SPECIMEN.COLLECTIONEVENTID = COLLECTIONEVENT.COLLECTIONEVENTID');
-                $this->db->join('LOCALITY','COLLECTIONEVENT.LOCALITYID = LOCALITY.LOCALITYID');
-                $this->db->join('PALEOCONTEXT','LOCALITY.PALEOCONTEXTID = PALEOCONTEXT.PALEOCONTEXTID');
+                $this->db->join('TAXONDETERMINATION','SPECIMEN.DETERMINATIONID = TAXONDETERMINATION.DETERMINATIONID', 'left');
+                $this->db->join('COLLECTIONEVENT','SPECIMEN.COLLECTIONEVENTID = COLLECTIONEVENT.COLLECTIONEVENTID', 'left');
+                $this->db->join('LOCALITY','COLLECTIONEVENT.LOCALITYID = LOCALITY.LOCALITYID', 'left');
+                $this->db->join('PALEOCONTEXT','LOCALITY.PALEOCONTEXTID = PALEOCONTEXT.PALEOCONTEXTID','left');
 
-                if ($execute_query === FALSE)
+                if ($execute_query === FALSE && $count_only === FALSE)
                 {
                         $query = $this->db->get_compiled_select();
                         return $query;
+                }
+                if ($execute_query === FALSE && $count_only === TRUE)
+                {
+                        return $this->db->count_all_results();
                 }
                 $query = $this->db->get();
                 return $query->result_array();

@@ -8,6 +8,7 @@ class Specimen extends CI_Controller {
             $this->load->model('specimen_model');
             $this->load->helper('url_helper');
             $this->load->library('session');
+            $this->load->library('pagination');
         }
 
         public function index()
@@ -52,8 +53,9 @@ class Specimen extends CI_Controller {
             }
             if ($this->input->post('run_search'))
             {
-                $data['sql'] = $this->specimen_model->search_specimen($data['filterArray'],FALSE);
-                $data['searchresult'] = $this->specimen_model->search_specimen($data['filterArray'],TRUE);
+                $data['sql'] = $this->specimen_model->search_specimen($data['filterArray'],FALSE,FALSE);
+                $data['resultcount'] = $this->specimen_model->search_specimen($data['filterArray'],FALSE,TRUE);
+                $data['searchresult'] = $this->specimen_model->search_specimen($data['filterArray'],TRUE,FALSE);
             }
             $this->load->view('templates/header', $data);
             $this->load->view('specimen_search', $data);
