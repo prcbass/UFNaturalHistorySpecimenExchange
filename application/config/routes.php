@@ -51,7 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['paleocontext/(:any)'] = 'paleocontext/$1';
 $route['paleocontext'] = 'paleocontext';
-$route['collectionevent'] = 'collectionevent/index';
+$route['collectionevent'] = 'collectionevent/calcTemporalDist';
 $route['default_controller'] = 'specimen/search';
 $route['(:any)'] = 'pages/view/$1';
 $route['404_override'] = '';
