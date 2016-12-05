@@ -26,6 +26,7 @@ class Specimen extends CI_Controller {
                 unset($_SESSION['filterArray']);
             }
             $data['title'] = 'Specimen Search';
+            $data['filter_fields'] = $this->specimen_model->get_filter_fields();
             $this->load->helper('form');
             if (isset($_SESSION['filterArray']) && !empty($_SESSION['filterArray']))
             {

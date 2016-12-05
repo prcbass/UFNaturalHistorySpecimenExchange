@@ -12,6 +12,37 @@ class Specimen_model extends CI_Model {
             $query = $this->db->get('PALEOCONTEXT');
             return $query->result_array();
         }
+        
+        public function get_filter_fields()
+        {
+                $filter_fields[] = NULL;
+                $t = $this->db->list_fields('SPECIMEN');
+                foreach($t as $column):
+                        if (substr($column,-2) != 'ID' || $column === "COREID")
+                               $filter_fields[] = $column; 
+                endforeach;
+                $t = $this->db->list_fields('TAXONDETERMINATION');
+                foreach($t as $column):
+                        if (substr($column,-2) != 'ID')
+                               $filter_fields[] = $column; 
+                endforeach;
+                $t = $this->db->list_fields('COLLECTIONEVENT');
+                foreach($t as $column):
+                        if (substr($column,-2) != 'ID')
+                               $filter_fields[] = $column; 
+                endforeach;
+                $t = $this->db->list_fields('LOCALITY');
+                foreach($t as $column):
+                        if (substr($column,-2) != 'ID')
+                               $filter_fields[] = $column; 
+                endforeach;
+                $t = $this->db->list_fields('PALEOCONTEXT');
+                foreach($t as $column):
+                        if (substr($column,-2) != 'ID')
+                               $filter_fields[] = $column; 
+                endforeach;
+                return $filter_fields;
+        }
 
         public function search_specimen($filterArray,$execute_query = TRUE)
         {
@@ -39,6 +70,8 @@ class Specimen_model extends CI_Model {
                 $this->db->from('SPECIMEN');
                 $this->db->join('TAXONDETERMINATION','SPECIMEN.DETERMINATIONID = TAXONDETERMINATION.DETERMINATIONID');
                 $this->db->join('COLLECTIONEVENT','SPECIMEN.COLLECTIONEVENTID = COLLECTIONEVENT.COLLECTIONEVENTID');
+                $this->db->join('LOCALITY','COLLECTIONEVENT.LOCALITYID = LOCALITY.LOCALITYID');
+                $this->db->join('PALEOCONTEXT','LOCALITY.PALEOCONTEXTID = PALEOCONTEXT.PALEOCONTEXTID');
 
                 if ($execute_query === FALSE)
                 {

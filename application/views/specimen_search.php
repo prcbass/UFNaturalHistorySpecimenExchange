@@ -20,12 +20,9 @@
       </div>
       <div class="col-md-2">
         <select class="form-control custom select-term" name="specimenTerm">
-            <option></option>
-            <option value="BASISOFRECORD">BasisOfRecord</option>
-            <option value="CATALOGNUMBER">CatalogNumber</option>
-            <option value="COLLECTIONCODE">CollectionCode</option>
-            <option value="INSTITUTIONCODE">InstitutionCode</option>
-            <option value="TYPESTATUS">TypeStatus</option>
+            <?php foreach($filter_fields as $field): ?>
+                  <option value="<?php echo $field?>"><?php echo $field?></option>
+            <?php endforeach; ?>
           </select>
       </div>
       <div class="col-md-2">
