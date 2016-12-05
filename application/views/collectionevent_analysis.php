@@ -43,14 +43,6 @@
  <section>
   <div class = "container">
     <h3>Analysis Results</h3>
-    <?php if (isset($stepSize)) echo "<p>$stepSize</p>";  ?>
-    <?php if (isset($dateRng1)) echo "<p>$dateRng1</p>";  ?>
-    <?php if (isset($dateRng2)) echo "<p>$dateRng2</p>";  ?>
-
-    <?php if (isset($stepInputType)) echo "<p>$stepInputType</p>";  ?>
-    <?php if (isset($date1InputType)) echo "<p>$date1InputType</p>";  ?>
-    <?php if (isset($date2InputType)) echo "<p>$date2InputType</p>";  ?>
-
     <?php if (isset($noResults)) echo "<p>$noResults</p>";  ?>
     <?php if (isset($queryResults) && count($queryResults) > 0): ?>
     <table class="table table-hover table-stripped table-bordered table-condensed">
