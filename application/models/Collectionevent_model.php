@@ -13,16 +13,18 @@ class Collectionevent_model extends CI_Model {
             ->join('LOCALITY', 'COLLECTIONEVENT.LOCALITYID = LOCALITY.LOCALITYID')
             ->group_by('COLLECTIONEVENT.YEARCOLLECTED, LOCALITY.LATITUDE, LOCALITY.LONGITUDE');
 
+    $this->db->group_start();
 		for($i = $startDate; $i <= $endDate; $i += $stepSize){
 			$this->db->or_where('COLLECTIONEVENT.YEARCOLLECTED', $i);
 		}
+    $this->db->group_end();
 
     $this->db->group_start()
             ->where('LOCALITY.LATITUDE IS NOT NULL')
             ->where('LOCALITY.LONGITUDE IS NOT NULL')
             ->where('COLLECTIONEVENT.YEARCOLLECTED IS NOT NULL')
             ->group_end()
-            ->order_by('COLLECTIONEVENT.YEARCOLLECTED', 'ASC');
+            ->order_by('COUNT(COLLECTIONEVENT.YEARCOLLECTED)', 'DESC');
 
 		if(!$execute_query){
 			$query = $this->db->get_compiled_select();
