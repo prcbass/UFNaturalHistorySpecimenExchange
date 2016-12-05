@@ -50,5 +50,23 @@
     <?php if (isset($stepInputType)) echo "<p>$stepInputType</p>";  ?>
     <?php if (isset($date1InputType)) echo "<p>$date1InputType</p>";  ?>
     <?php if (isset($date2InputType)) echo "<p>$date2InputType</p>";  ?>
+
+    <?php if (isset($noResults)) echo "<p>$noResults</p>";  ?>
+    <?php if (isset($queryResults) && count($queryResults) > 0): ?>
+    <table class="table table-hover table-stripped table-bordered table-condensed">
+      <thead>
+        <tr>
+          <th><?php echo implode('</th><th>', array_keys(current($queryResults))); ?></th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php foreach ($queryResults as $row): array_map('htmlentities', $row); ?>
+        <tr>
+          <td><?php echo implode('</td><td>', $row); ?></td>
+        </tr>
+        <?php endforeach; ?>
+      </tbody>
+    </table>
+    <?php endif; ?>
   </div>
  </section>

@@ -41,6 +41,12 @@ class Collectionevent extends CI_Controller {
 				$data['date2InputType'] = gettype($dateRange2);
 
 				$data['sqlQuery'] = $this->collectionevent_model->search_ce($stepSize, $dateRange1, $dateRange2, FALSE);
+				$queryResults = $this->collectionevent_model->search_ce($stepSize, $dateRange1, $dateRange2, TRUE);
+				$data['queryResults'] = $queryResults;
+
+				if(count($queryResults) === 0){
+					$data['noResults'] = 'The entered query did not return any results, please try another query';
+				}
 			}
 			else{
 				$data['formLogicError'] = 'The beginning of the date range must be before the end of the date range';
