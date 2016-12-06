@@ -61,11 +61,21 @@
 <!-- QUERY RESULTS -->
 <section>
   <div class="container">
-    <h3>Query Results</h3>
-    <?php if (isset($resultcount)) echo "<p>$resultcount</p>"; ?>
-    <?php if (isset($sql)) echo "<p>$sql</p>";  ?>
-    <div class="section"><?php if (isset($links))  echo $links; ?></div>
+    <h3>Query Results</h3>    
     <?php if (isset($searchresult) && count($searchresult) > 0): ?>
+      <div class="section">
+        <div class="row">
+          <pre><?php echo $sql; ?></pre>
+          <p class="body"><?php echo $resultcount; ?> specimens found.</p>
+        </div>
+        <div class="row">
+          <div class="col-md-2">
+            <a class="btn btn-primary" href="/ci/index.php/googlemap" role="button">Plot on Google Map</a>
+            <br />
+            <?php if (isset($links))  echo $links; ?>
+          </div>
+        </div>
+      </div>
       <table class="table table-hover table-stripped table-bordered table-condensed">
         <thead>
           <tr>
