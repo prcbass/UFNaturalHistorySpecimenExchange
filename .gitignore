@@ -8,6 +8,9 @@ Thumbs.db
 # PHP
 db_conf.php
 
+# PHP CodeIgniter
+database.php
+
 # Node and related ecosystem
 # ==========================
 .nodemonignore
