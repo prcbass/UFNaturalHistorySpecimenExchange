@@ -53,6 +53,7 @@ $route['paleocontext/(:any)'] = 'paleocontext/$1';
 $route['paleocontext'] = 'paleocontext';
 $route['googlemap'] = 'googlemap';
 $route['specimen/search/(:any)'] = 'specimen/search/$1';
+$route['collectionevent'] = 'collectionevent/calcTemporalDist';
 $route['default_controller'] = 'specimen/search';
 $route['(:any)'] = 'pages/view/$1';
 $route['404_override'] = '';
