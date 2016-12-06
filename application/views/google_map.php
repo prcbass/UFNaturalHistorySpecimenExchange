@@ -19,7 +19,7 @@
   </div>
   <div class="col-md-2">
     <div class="row">
-        <a class="btn btn-primary" href="/ci/index.php/specimen/search" role="button">Return to Speciem Search</a>
+        <a class="btn btn-primary" href="/ci/index.php/specimen/search" role="button">Return to Specimen Search</a>
     </div>
    </div>  
 </section>    
