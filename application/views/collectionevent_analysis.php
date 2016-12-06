@@ -22,10 +22,12 @@
 		        	<option value="10"> 10 </opton>
 		        </select>
       		</div>
-      		<div class = "col-md-2">
-      			<input class = "form-control" placeholder = 'Enter beginning of date range' name = "dateRange1">
-      			<input class = "form-control" placeholder = 'Enter end of date range' name = "dateRange2">
-      		</div>
+          <div class="row">
+        		<div class = "col-md-2">
+        			<input class = "form-control" placeholder = 'Enter beginning of date range' name = "dateRange1">
+        			<input class = "form-control" placeholder = 'Enter end of date range' name = "dateRange2">
+        		</div>
+          </div>
       		<div class = "btn-group">
       			<input class="btn btn-group btn-primary" type="submit" name="submit" id="submit" value="Analyze Data" />
       		</div>
@@ -60,5 +62,24 @@
       </tbody>
     </table>
     <?php endif; ?>
+  </div>
+ </section>
+
+ <section>
+  <div class = "container">
+    <h3>Analysis Heat Map</h3>
+    <div class = "map"></div> <!-- Used by GoogleMaps API -->
+    <script>
+      //Insert js Google Maps code here
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -34.397, lng: 150.644},
+          zoom: 8
+        });
+      }  
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCR2WcnOnL2n_XXoJXithtJjWLLp5Wkm2Q&libraries=visualization&callback=initMap">
+    </script>
   </div>
  </section>

@@ -40,8 +40,8 @@ class Collectionevent extends CI_Controller {
 				$data['date1InputType'] = gettype($dateRange1);
 				$data['date2InputType'] = gettype($dateRange2);
 
-				$data['sqlQuery'] = $this->collectionevent_model->search_ce($stepSize, $dateRange1, $dateRange2, FALSE);
-				$queryResults = $this->collectionevent_model->search_ce($stepSize, $dateRange1, $dateRange2, TRUE);
+				$data['sqlQuery'] = $this->collectionevent_model->ce_by_state($dateRange1, $dateRange2, FALSE);
+				$queryResults = $this->collectionevent_model->ce_by_state($dateRange1, $dateRange2, TRUE);
 				$data['queryResults'] = $queryResults;
 
 				if(count($queryResults) === 0){
