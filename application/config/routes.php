@@ -49,7 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['tupcounts'] = 'tupcounts/counts';
+$route['tuplecounts'] = 'tupcounts/counts';
 $route['paleocontext/(:any)'] = 'paleocontext/$1';
 $route['paleocontext'] = 'paleocontext';
 $route['googlemap'] = 'googlemap';

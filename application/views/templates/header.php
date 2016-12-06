@@ -20,6 +20,7 @@
       <li><a href="#sign-up">Sign Up</a></li>
       <li><a class="active" href="/ci">Specimen Search</a></li>
       <li><a href="/ci/index.php/collectionevent">Collection Event Analysis</a></li>
+      <li><a href="/ci/index.php/tuplecounts">Tuple Count</a></li>
     </ul>
   </div>
 </section>

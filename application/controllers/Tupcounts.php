@@ -7,15 +7,8 @@
 
 			}
 
-			public function index(){
-	  
-	            $data['title'] = 'CountsView';
-
-	           	$this->load->view('templates/header', $data);
-	            //$this->load->view('templates/footer');
-			}
-
 			public function counts(){
+				$data['title'] = 'Tuple Count View';
 				$this->load->model('countsmodel');
 
 				$data['collecEvent'] = $this->countsmodel->getCollectionEvent();
@@ -25,8 +18,8 @@
 				$data['taxonD'] = $this->countsmodel->getTaxonDetermination();
 
 				$this->load->view('templates/header', $data);
-				$this->load->view('Countsview', $data);
-				//$this->load->view('templates/footer');
+				$this->load->view('countsview', $data);
+				$this->load->view('templates/footer');
 			}
 	}
 ?>
