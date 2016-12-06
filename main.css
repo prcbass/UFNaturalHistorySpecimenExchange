@@ -91,3 +91,8 @@ select.custom::-ms-expand {
     top: 8px;
     color: black;
 }
+
+#map {
+  height: 600px;
+  width: 100%;
+ }
