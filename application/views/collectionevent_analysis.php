@@ -9,7 +9,7 @@
       <div class="col-md-2"><?php if (isset($formLogicError)) echo "<p>$formLogicError</p>"; ?></div>
     </div>
  		<div class="row">
-      		<div>
+      		<div class="col-md-2">
       			<input class = "form-control" placeholder = 'Enter first decade' name = "dateRange1">
       			<input class = "form-control" placeholder = 'Enter second decade' name = "dateRange2">
       		</div>
