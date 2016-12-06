@@ -11,11 +11,19 @@
 				$data['title'] = 'Tuple Count View';
 				$this->load->model('countsmodel');
 
-				$data['collecEvent'] = $this->countsmodel->getCollectionEvent();
-				$data['locality'] = $this->countsmodel->getLocality();
-				$data['paleo'] = $this->countsmodel->getPaleoContext();
-				$data['specimen'] = $this->countsmodel->getSpecimen();
-				$data['taxonD'] = $this->countsmodel->getTaxonDetermination();
+				$ceCount = $this->countsmodel->getCollectionEvent();
+				$localityCount = $this->countsmodel->getLocality();
+				$paleoCount = $this->countsmodel->getPaleoContext();
+				$specimenCount = $this->countsmodel->getSpecimen();
+				$taxonCount = $this->countsmodel->getTaxonDetermination();
+
+				$data['collecEvent'] = $ceCount;
+				$data['locality']  = $localityCount;
+				$data['paleo'] = $paleoCount;
+				$data['specimen'] = $specimenCount;
+				$data['taxonD']  = $taxonCount;
+
+				$data['totalCount'] = $ceCount + $localityCount + $paleoCount + $specimenCount + $taxonCount;
 
 				$this->load->view('templates/header', $data);
 				$this->load->view('countsview', $data);
