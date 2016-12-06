@@ -17,7 +17,7 @@ class Specimen extends CI_Controller {
 
             $this->load->view('templates/header', $data);
             $this->load->view('specimen_search', $data);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/specimensearchfooter');
         }
 
         public function search($page = 0)
@@ -87,7 +87,7 @@ class Specimen extends CI_Controller {
             
             $this->load->view('templates/header', $data);
             $this->load->view('specimen_search', $data);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/specimensearchfooter');
         }
 
 }

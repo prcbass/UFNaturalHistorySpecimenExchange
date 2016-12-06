@@ -34,7 +34,9 @@
         <?php foreach($geopoints as $gp): ?>
             var marker = new google.maps.Marker({
             position: <?php echo str_replace("lon", "lng",$gp['I_GEOPOINT']); ?>,
-            map: map
+            map: map,
+            <?php $markerTitle = $gp['INSTITUTIONCODE'].' '.$gp['COLLECTIONCODE'].' '.$gp['CATALOGNUMBER'].' '.$gp['T_GENUS'].' '.$gp['T_SPECIES']; ?>
+            title: '<?php echo $markerTitle; ?>'
             });
         <?php endforeach; ?>
       }

@@ -10,7 +10,7 @@ class Googlemap_model extends CI_Model {
         public function get_geopoints($filterArray)
         {
                 $this->load->helper('url');
-                $this->db->select('I_GEOPOINT');
+                $this->db->select('I_GEOPOINT, INSTITUTIONCODE, COLLECTIONCODE, CATALOGNUMBER, T_GENUS, T_SPECIES');
                 foreach ($filterArray as $f):
                         if ($f['operator'] == 'equal')
                                 $this->db->where($f['specimenTerm'],$f['criteria']);
@@ -30,6 +30,7 @@ class Googlemap_model extends CI_Model {
                         if ($f['operator'] == 'likebefore')
                                 $this->db->like($f['specimenTerm'],$f['criteria'],'before');
                 endforeach;
+                $this->db->where('I_GEOPOINT is not null');
                 $this->db->from('SPECIMEN');
                 $this->db->join('TAXONDETERMINATION','SPECIMEN.DETERMINATIONID = TAXONDETERMINATION.DETERMINATIONID', 'left');
                 $this->db->join('COLLECTIONEVENT','SPECIMEN.COLLECTIONEVENTID = COLLECTIONEVENT.COLLECTIONEVENTID', 'left');

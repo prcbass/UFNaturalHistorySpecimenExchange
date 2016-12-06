@@ -18,5 +18,16 @@
     allowClear: true
   });
 </script>
+
+<!-- Interactive datagrid for search result display -->
+<!-- https://datatables.net/ -->
+<script type="text/javascript">
+  $(document).ready(function(){
+      $('#resultgrid').DataTable( { 
+        "bInfo" : false,
+        "bPaginate" : false
+        } );
+  });
+</script>
 </body>
 </html>
