@@ -1,3 +1,4 @@
+
 <script
         src="https://code.jquery.com/jquery-3.1.1.min.js"
         integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
@@ -17,7 +18,8 @@
     allowClear: true
   });
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDN2DW_TbwI3gNVPUeo8Pp4DMjnCSBCdYA&callback=initHeatMap" async defer>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDN2DW_TbwI3gNVPUeo8Pp4DMjnCSBCdYA&libraries=visualization&callback=initHeatMap">
 </script>
 </body>
 </html>

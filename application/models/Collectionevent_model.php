@@ -37,7 +37,7 @@ class Collectionevent_model extends CI_Model {
 	}
 
   public function lat_lon_by_year($startDate, $endDate, $execute_query = TRUE){
-    $this->db->limit(25);
+    //$this->db->limit(25);
 
     $this->db->select('LOCALITY.STATE, LOCALITY.LONGITUDE, LOCALITY.LATITUDE')
             ->from('COLLECTIONEVENT')

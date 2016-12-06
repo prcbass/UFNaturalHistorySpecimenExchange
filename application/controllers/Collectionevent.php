@@ -8,21 +8,12 @@ class Collectionevent extends CI_Controller {
 		$this->load->helper('url_helper');
 	}
 
-	public function index(){
-		$data['title'] = 'Collection Event Analysis';
-
-		$this->load->view('templates/header', $data);
-		$this->load->view('collectionevent_analysis', $data);
-		$this->load->view('templates/footer');
-	}
-
 	public function calcTemporalDist(){
 		$data['title'] = 'Collection Event Analysis';
 
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 
-		$this->form_validation->set_rules('year-step-size', 'StepSize', 'required');
 		$this->form_validation->set_rules('dateRange1', 'Date Range Beginning', 'required');
 		$this->form_validation->set_rules('dateRange2', 'Date Range End', 'required');
 
@@ -32,40 +23,39 @@ class Collectionevent extends CI_Controller {
 			$dateRange2 = (int)$this->input->post('dateRange2');
 
 			if($dateRange1 < $dateRange2){
-				$data['stepSize'] = $stepSize;
-				$data['dateRng1'] = $dateRange1;
-				$data['dateRng2'] = $dateRange2;
 
-				$data['stepInputType'] = gettype($stepSize);
-				$data['date1InputType'] = gettype($dateRange1);
-				$data['date2InputType'] = gettype($dateRange2);
+				if($dateRange2 - $dateRange1 < 10){
+					$data['formLogicError'] = 'The beginning and end dates must be at least a decade apart';
+
+					$this->load->view('templates/heatmapheader', $data);
+					$this->load->view('collectionevent_analysis', $data);
+					$this->load->view('templates/heatmapfooter');
+					return;
+				}
+
 
 				$data['sql1Query'] = $this->collectionevent_model->ce_by_state($dateRange1, $dateRange2, FALSE);
-				$data['sql2Query'] = $this->collectionevent_model->lat_lon_by_year($dateRange1, $dateRange2, FALSE);
+				$data['sql2Query'] = $this->collectionevent_model->lat_lon_by_year($dateRange1, $dateRange1+9, FALSE);
+				$data['sql3Query'] = $this->collectionevent_model->lat_lon_by_year($dateRange2, $dateRange2+9, FALSE);
 				$query1Results = $this->collectionevent_model->ce_by_state($dateRange1, $dateRange2, TRUE);
 				$data['query1Results'] = $query1Results;
 
-				$masterLatLon = array();
+				$data['latLon1'] = $this->collectionevent_model->lat_lon_by_year($dateRange1, $dateRange1+9, TRUE);
+				$data['latLon2'] = $this->collectionevent_model->lat_lon_by_year($dateRange2, $dateRange2+9, TRUE);
 
-				for($i = $dateRange1; $i <= $dateRange2; $i+= $stepSize){
-					$query2Results = $this->collectionevent_model->lat_lon_by_year($dateRange1, $dateRange2, TRUE);
-					array_push($masterLatLon, $query2Results);
-				}
-
-				$data['query2Results0'] = json_decode($masterLatLon[0][2]['LONGITUDE']);
-				$data['query2Results1'] = $masterLatLon[0][1];
-				$data['query2Results2'] = $masterLatLon[0][2];
+				$data['latLongDateRange1'] = $dateRange1 . ' - ' . ($dateRange1+9);
+				$data['latLongDateRange2'] = $dateRange2 . ' - ' . ($dateRange2+9);
 
 				if(count($query1Results) === 0){
 					$data['noResults'] = 'The entered query did not return any results, please try another query';
 				}
 			}
 			else{
-				$data['formLogicError'] = 'The beginning of the date range must be before the end of the date range';
+				$data['formLogicError'] = 'The beginning of the date range must be before the end';
 			}
 		}
 
-		$this->load->view('templates/header', $data);
+		$this->load->view('templates/heatmapheader', $data);
 		$this->load->view('collectionevent_analysis', $data);
 		$this->load->view('templates/heatmapfooter');
 	}
