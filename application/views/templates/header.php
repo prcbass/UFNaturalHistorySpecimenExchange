@@ -15,12 +15,11 @@
     <ul class="nav-options">
       <img class="nav-img" src="http://pledgie.com/assets/campaigns/23315/medium/database-logo.png?1390316899"/>
       <span class="nav-title">Natural History Specimen Research</span>
-      <li><a href="/ci/index.php/tupcounts/counts">Tuple Counts</a></li>
       <li><a href="#sign-in">Sign in</a></li>
       <li><a href="#sign-up">Sign Up</a></li>
       <li><a class="active" href="/ci">Specimen Search</a></li>
       <li><a href="/ci/index.php/collectionevent">Collection Event Analysis</a></li>
-      <li><a href="/ci/index.php/tuplecounts">Tuple Count</a></li>
+      <li><a href="/ci/index.php/tuplecounts">Tuple Counts</a></li>
     </ul>
   </div>
 </section>
