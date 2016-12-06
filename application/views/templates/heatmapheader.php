@@ -29,7 +29,8 @@
       <span class="nav-title">Natural History Specimen Research</span>
       <li><a href="#sign-in">Sign in</a></li>
       <li><a href="#sign-up">Sign Up</a></li>
-      <li><a class="active" href="/ci">Home</a></li>
+      <li><a class="active" href="/ci">Specimen Search</a></li>
+      <li><a href="/ci/index.php/collectionevent">Collection Event Analysis</a></li>
     </ul>
   </div>
 </section>
