@@ -36,11 +36,25 @@ class Collectionevent_model extends CI_Model {
     return $query->result_array();
 	}
 
-  public function lat_lon_by_year($stepSize, $startDate, $endDate, $execute_query = TRUE){
-    //$this->db->limit(25);
+  public function lat_lon_by_year($startDate, $endDate, $execute_query = TRUE){
+    $this->db->limit(25);
 
+    $this->db->select('LOCALITY.STATE, LOCALITY.LONGITUDE, LOCALITY.LATITUDE')
+            ->from('COLLECTIONEVENT')
+            ->join('LOCALITY', 'COLLECTIONEVENT.LOCALITYID = LOCALITY.LOCALITYID')
+            ->where('COLLECTIONEVENT.YEARCOLLECTED >= ' . $startDate)
+            ->where('COLLECTIONEVENT.YEARCOLLECTED <= ' . $endDate)
+            ->where('LOCALITY.LATITUDE IS NOT NULL')
+            ->where('LOCALITY.LONGITUDE IS NOT NULL')
+            ->where('COLLECTIONEVENT.YEARCOLLECTED IS NOT NULL');
 
-    
+    if(!$execute_query){
+      $query = $this->db->get_compiled_select();
+      return $query;
+    }
+
+    $query = $this->db->get();
+    return $query->result_array();
   }
 }
 ?>

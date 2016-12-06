@@ -36,25 +36,27 @@
  </section>
 
  <section>
- 	<div class = "container">
+ 	<div class="container">
     <h3>Computed Query</h3>
-    <?php if (isset($sqlQuery)) echo "<p>$sqlQuery</p>";  ?>
+    <?php if (isset($sql1Query)) echo "<p>$sql1Query</p>";  ?>
+    <br>
+    <?php if (isset($sql2Query)) echo "<p>$sql2Query</p>";  ?>
  	</div>
  </section>
 
  <section>
-  <div class = "container">
+  <div class="container">
     <h3>Analysis Results</h3>
     <?php if (isset($noResults)) echo "<p>$noResults</p>";  ?>
-    <?php if (isset($queryResults) && count($queryResults) > 0): ?>
+    <?php if (isset($query1Results) && count($query1Results) > 0): ?>
     <table class="table table-hover table-stripped table-bordered table-condensed">
       <thead>
         <tr>
-          <th><?php echo implode('</th><th>', array_keys(current($queryResults))); ?></th>
+          <th><?php echo implode('</th><th>', array_keys(current($query1Results))); ?></th>
         </tr>
       </thead>
       <tbody>
-        <?php foreach ($queryResults as $row): array_map('htmlentities', $row); ?>
+        <?php foreach ($query1Results as $row): array_map('htmlentities', $row); ?>
         <tr>
           <td><?php echo implode('</td><td>', $row); ?></td>
         </tr>
@@ -62,24 +64,26 @@
       </tbody>
     </table>
     <?php endif; ?>
+    <?php if (isset($query2Results0)) echo "<p>$query2Results0</p>";  ?>
+    <?php //if (isset($query2Results1)) echo "<p>$query2Results1</p>";  ?>
+    <?php //if (isset($query2Results2)) echo "<p>$query2Results2</p>";  ?>
   </div>
  </section>
 
  <section>
-  <div class = "container">
-    <h3>Analysis Heat Map</h3>
-    <div class = "map"></div> <!-- Used by GoogleMaps API -->
-    <script>
-      //Insert js Google Maps code here
-      var map;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 8
-        });
-      }  
-    </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCR2WcnOnL2n_XXoJXithtJjWLLp5Wkm2Q&libraries=visualization&callback=initMap">
-    </script>
+  <div class="container">
+    <h3>Analysis Heat Map</h3> 
   </div>
  </section>
+
+<div id="map">
+  <script>
+    function initHeatMap() {
+      var gville = {lat: 29.651634, lng: -82.324829};
+      var map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 4,
+        center: gville
+      });
+    }
+  </script>
+</div>

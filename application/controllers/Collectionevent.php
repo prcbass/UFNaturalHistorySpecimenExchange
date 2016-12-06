@@ -40,11 +40,23 @@ class Collectionevent extends CI_Controller {
 				$data['date1InputType'] = gettype($dateRange1);
 				$data['date2InputType'] = gettype($dateRange2);
 
-				$data['sqlQuery'] = $this->collectionevent_model->ce_by_state($dateRange1, $dateRange2, FALSE);
-				$queryResults = $this->collectionevent_model->ce_by_state($dateRange1, $dateRange2, TRUE);
-				$data['queryResults'] = $queryResults;
+				$data['sql1Query'] = $this->collectionevent_model->ce_by_state($dateRange1, $dateRange2, FALSE);
+				$data['sql2Query'] = $this->collectionevent_model->lat_lon_by_year($dateRange1, $dateRange2, FALSE);
+				$query1Results = $this->collectionevent_model->ce_by_state($dateRange1, $dateRange2, TRUE);
+				$data['query1Results'] = $query1Results;
 
-				if(count($queryResults) === 0){
+				$masterLatLon = array();
+
+				for($i = $dateRange1; $i <= $dateRange2; $i+= $stepSize){
+					$query2Results = $this->collectionevent_model->lat_lon_by_year($dateRange1, $dateRange2, TRUE);
+					array_push($masterLatLon, $query2Results);
+				}
+
+				$data['query2Results0'] = json_decode($masterLatLon[0][2]['LONGITUDE']);
+				$data['query2Results1'] = $masterLatLon[0][1];
+				$data['query2Results2'] = $masterLatLon[0][2];
+
+				if(count($query1Results) === 0){
 					$data['noResults'] = 'The entered query did not return any results, please try another query';
 				}
 			}
@@ -55,7 +67,7 @@ class Collectionevent extends CI_Controller {
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('collectionevent_analysis', $data);
-		$this->load->view('templates/footer');
+		$this->load->view('templates/heatmapfooter');
 	}
 
 
