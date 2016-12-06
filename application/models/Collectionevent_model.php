@@ -15,11 +15,6 @@ class Collectionevent_model extends CI_Model {
 
     $this->db->where('COLLECTIONEVENT.YEARCOLLECTED >= ' . $startDate)
             ->where('COLLECTIONEVENT.YEARCOLLECTED <= ' . $endDate);
-  //   $this->db->group_start();
-		// for($i = $startDate; $i <= $endDate; $i += $stepSize){
-		// 	$this->db->or_where('COLLECTIONEVENT.YEARCOLLECTED', $i);
-		// }
-  //   $this->db->group_end();
 
     $this->db->group_start()
             ->where('LOCALITY.LATITUDE IS NOT NULL')
